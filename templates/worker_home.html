@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='employer_home.css') }}">
+</head>
+<body>
+    <div class="home-container">
+        <h1>Welcome to the Home Page</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>employer_name</th>
+                        <th>job_title</th>
+                        <th>detalis</th>
+                        <th>location</th>
+                        <th>starting_date</th>
+                        <th>ending_date</th>
+                        <th>nessesry_skills</th>
+                        <th>status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th>{{user.employer_name}}</th>
+                        <th>{{user.job_title}}</th>
+                        <th>{{user.detalis}}</th>
+                        <th>{{user.location}}</th>
+                        <th>{{user.starting_date}}</th>
+                        <th>{{user.ending_date}}</th>
+                        <th>{{user.nessesry_skills}}</th>
+                        <div id ='status'>
+                        <th>
+                        <form action="/process_response" method="post">
+                            <input type="hidden" name="job_id" value="{{ user.job_id }}">
+                            <input type="radio" name="response" id ='accept' value="accept"> Accept
+                            <input type="radio" name="response" id = 'reject' value="reject"> Reject
+                            <button type="submit" id ='submit' >Submit</button>
+                        </form>
+                        </th>
+                    </div>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+
+    </div>
+</body>
+<a href="/worker_logout">Logout</a>
+
+</html>

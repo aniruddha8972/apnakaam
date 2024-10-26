@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ApnaKaam</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='first_page.css') }}">
+</head>
+<body>
+    <header>
+        <h1>ApnaKaam</h1>
+    </header>
+
+    <section class="login-options">
+        <div class="employer-login">
+            <h2>Employer Login</h2>
+            <a href="{{ url_for('login_page.login_view') }}"> login </a>
+        </div>
+
+        <div class="employee-login">
+            <h2>worker Login</h2>
+            <a href="{{ url_for('worker_login_page.login_view') }}"> login </a>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

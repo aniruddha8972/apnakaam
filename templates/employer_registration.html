@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Page Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='employer_registration.css') }}">
+</head>
+<body>
+    <h1>Employer Registration</h1>
+    <form action="/register_employer" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="address">Address:</label>
+        <textarea   
+ id="address" name="address" required></textarea><br><br>
+
+        <label   
+ for="email_id">Email ID:</label>
+        <input type="email" id="email_id" name="email_id" required><br><br>
+
+        <label for="mobile_no">Mobile Number:</label>
+        <input type="tel" id="mobile_no" name="mobile_no" required><br><br>
+
+        <label for="govt_id">Government   
+ ID:</label>
+        <input type="text" id="govt_id" name="govt_id" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+         <!--for flash massages-->
+         {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+             <ul>
+                 {% for category, message in messages %}
+                     <li class="{{ category }}">{{ message }}</li>
+                 {% endfor %}
+             </ul>
+         {% endif %}
+     {% endwith %}
+        <button   
+ type="submit">Register</button>   
+
+    </form>
+
+    <div>
+        <h3>visited here before</h3>
+        <a href="{{ url_for('login_page.login_view') }}">
+            return to login
+        </a>
+    </div>
+</body>
+</html>
