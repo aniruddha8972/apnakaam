@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApnaKaam</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='first_page.css') }}">
 </head>
-<body>
-    <header>
-        <h1>ApnaKaam</h1>
-    </header>
+<body class="bg-gradient">
 
-    <section class="login-options">
-        <div class="employer-login">
-            <h2>Employer Login</h2>
-            <a href="{{ url_for('login_page.login_view') }}"> login </a>
-        </div>
+    <div class="container">
+        <h1 class="title">ApnaKaam</h1>
+        <div class="card-container">
+            <!-- Employer Login Card -->
+            <div class="login-card">
+                <h2 class="card-title">Employer Login</h2>
+            <a href="{{ url_for('login_page.login_view') }}" class="login-link"> login </a>
+            
+            </div>
 
-        <div class="employee-login">
-            <h2>worker Login</h2>
-            <a href="{{ url_for('worker_login_page.login_view') }}"> login </a>
-            </form>
+            <!-- Worker Login Card -->
+            <div class="login-card">
+                <h2 class="card-title">Worker Login</h2>
+            <a href="{{ url_for('worker_login_page.login_view') }}" class="login-link"> login </a>
         </div>
-    </section>
+    </div>
+</div>
+
 </body>
+
 </html>

@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Employer Registration</h1>
+    <div class = "registration-container">
     <form action="/register_employer" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -39,9 +40,8 @@
          {% endif %}
      {% endwith %}
         <button   
- type="submit">Register</button>   
-
-    </form>
+ type="submit">Register</button>
+</form>
 
     <div>
         <h3>visited here before</h3>
@@ -49,5 +49,6 @@
             return to login
         </a>
     </div>
+</div>
 </body>
 </html>
