@@ -1,58 +1,121 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00cc, #ff0000);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+/* Add more transitions to the background color */
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    transition: background-color 0.5s ease-in-out;
 }
+
+
+/* Add a hover effect to the login button for a smooth transition */
+
+button:hover {
+    background-color: #3e8e41;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+/* ... rest of the CSS ... */
 
 .login-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-h2 {
+    background-color: #eeffd6;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    margin: 100px auto;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.input-group {
-    margin-bottom: 15px;
+
+/* Anime-Style Animations */
+
+h1,
+label,
+input,
+button,
+p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.input-group label {
+h1,
+label,
+input,
+button,
+p,
+a.animate__animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Form Styles */
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+label {
     display: block;
-    font-weight: bold;
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
 }
 
-.input-group input {
+input {
     width: 100%;
     padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #5cb85c;
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #3e8e41;
+}
+
+p {
+    margin-top: 20px;
+    color: #666;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

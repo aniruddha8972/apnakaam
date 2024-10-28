@@ -1,41 +1,107 @@
+/* Background Styling */
+
 body {
-    font-family: Arial, sans-serif;
-}
-
-header {
-    text-align: center;
-    padding: 20px;
-}
-
-.login-options {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
     display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-.login-options > div {
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-}
-
-form {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
+    font-family: 'Arial', sans-serif;
+    animation: gradientAnimation 10s ease infinite;
+    background-size: 300% 300%;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+
+/* Gradient Animation */
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+/* Container Styling */
+
+.container {
+    text-align: center;
+}
+
+
+/* Title Styling */
+
+.title {
+    font-size: 3em;
+    color: #fff;
+    margin-bottom: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.title:hover {
+    transform: scale(1.05);
+}
+
+
+/* Card Container Styling */
+
+.card-container {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+
+/* Login Card Styling */
+
+.login-card {
+    background-color: #ffffff;
+    padding: 2em;
+    width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.login-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border-color: #ff758c;
+}
+
+
+/* Card Title Styling */
+
+.card-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+
+/* Login Link Styling */
+
+.login-link {
+    font-size: 1.2em;
+    color: #ff758c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.login-link:hover {
+    color: #ff3e6c;
+    text-decoration: underline;
+    transform: scale(1.1);
 }

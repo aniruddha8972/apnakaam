@@ -31,7 +31,7 @@ form {
 }
 
 .registration-container {
-    width: 500px;
+    width: 400px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -76,13 +76,4 @@ button {
 
 button:hover {
     background-color: #3e8e41;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
