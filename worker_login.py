@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash,sess
 from flask import Blueprint
 from database import connet
 from worker_registration import worker_registration_page
-from worker_home import worker_home_page
+
 
 
 mycursor = connet()
@@ -10,7 +10,6 @@ mycursor = connet()
 worker_login_page = Blueprint('worker_login_page',__name__)
 
 worker_login_page.register_blueprint(worker_registration_page)
-worker_login_page.register_blueprint(worker_home_page)
 
 
 
@@ -102,7 +101,7 @@ def login():
     # print(pas)
     if pas == None:
         flash('incorrect user_id or password', 'warning')
-        return redirect(url_for('worker_login_page.worker_login_view'))
+        return redirect(url_for('worker_login_page.login_view'))
     else:
         passkey = "".join(pas)
         print(passkey)
