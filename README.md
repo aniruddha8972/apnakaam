@@ -33,29 +33,21 @@ APNAKAAM is a platform designed to connect daily workers with potential employer
 
 ```bash
 
-git clone [your repository URL]
+git clone https://github.com/aniruddha8972/apnakaam.git
 
 ```
 
-2. **Install dependencies:**
-
-```bash
-
-npm install
-
-```
-
-3. **Set up your environment variables:**
+2. **Set up your environment variables:**
 
 * Create a `.env` file in the root directory.
 
-* Add your database credentials and other necessary environment variables.
+3. * Add your database credentials and other necessary environment variables.
 
 4. **Run the application:**
 
 ```bash
 
-npm start
+python run app.py
 
 ```
 
@@ -63,6 +55,6 @@ npm start
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
-## License
+## future contributing ideas
 
-This project is licensed under the [Specify your license, e.g., MIT License] - see the [LICENSE](LICENSE) file for details.
+we can add direct payment system of to the worker. also we can add maps to find the working location and most important we have to optimise the database
