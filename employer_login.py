@@ -2,15 +2,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from flask import Blueprint
 from database import connet
-from employer_home import employer_home_page
 from employer_registration import employer_registration_page
 # from app import get_user
+# from employer_home import home_page
 
 mycursor = connet()
 # user_details = None
 
 login_page = Blueprint('login_page',__name__)
-login_page.register_blueprint(employer_home_page)
 login_page.register_blueprint(employer_registration_page)
 
 
@@ -39,6 +38,34 @@ def request_transform(job_requests):
 
 
 # @login_page.route('/job_requests',methods = ['POST'])
+
+
+
+def get_details(emp_id):
+    mycursor.execute('select id , job_title, location from job_posting where employer_id = %s',(emp_id,))
+    output = mycursor.fetchall()    
+    return output
+
+def transform(output):
+    main = []
+    for i in range(len(output)):
+        l = output[i]
+        print(l)
+        l_set ={}
+        
+        l_set['id'] = l[0]
+        l_set['job_title'] = l[1]
+        l_set['location'] = l[2]
+        main.append(l_set)
+    return main
+
+def posted_jobs():
+    # emp_id = request.form['id']
+    emp_id = session['employer_user_id']
+    print(emp_id)
+    output = get_details(emp_id)
+    main = transform(output)
+    return main
 
     
     
@@ -69,7 +96,8 @@ def employer_home():
     if 'employer_user_id' in session:
         print(session['employer_user_id'])
         get_details = request_transform(get_requests())
-        return render_template('employer_home.html', users = get_details)
+        get_job_posts = posted_jobs()
+        return render_template('employer_home.html', users = get_details, job_posts = get_job_posts)
     else:
         flash('no login session detected','error')
         return redirect(url_for('login_page.login_view'))

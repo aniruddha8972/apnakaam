@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,jsonify,session
 from flask import Blueprint
 from database import connet,commit_all
-# from employer_login import get_user_id
+from employer_login import employer_home
 from datetime import datetime
 employer_home_page = Blueprint('employer_home_page',__name__)
 
@@ -14,91 +14,44 @@ db = connet()
 
 
 def post_job(employer_id,job_title,job_details,location,starting_date,ending_date,experience,required_skills):
+    if session['add_jobs']:
         query = "INSERT INTO job_posting (employer_id,job_title,job_details,location,starting_date,ending_date,experience_requirement,required_skills) VALUES (%s, %s,%s, %s, %s, %s, %s,%s)"
         val = (employer_id,job_title,job_details,location,starting_date,ending_date,experience,required_skills)
         db.execute(query,val)
-        commit_all()
+        # commit_all()
+        session['add_jobs'] =False
+        flash("job details successfully added")
+    else:
+        flash('this job deltails is already submitted')
         
 def home_page():
     return render_template('employer_home.html')        
         
 @employer_home_page.route("/emplyer_job_posting",methods=["POST"])
 def add_details():
-    employer_id = session['employer_user_id']
-    job_title = request.form['job_title']
-    job_details = request.form['job_description']
-    location = request.form['location']
-    starting_date = datetime.strptime(request.form['starting_date'],'%Y-%m-%d')
-    ending_date =  datetime.strptime(request.form['ending_date'],'%Y-%m-%d')
-    experience_requirement = request.form['experience']
-    required_skills = request.form['skills']
-    try:
-        post_job(employer_id,job_title,job_details,location,starting_date,ending_date,experience_requirement,required_skills)
-        flash('Job posting submitted successfully')
-        commit_all()
-        return render_template('employer_home.html')
-    except:
-        flash('error in job posting')
-        return render_template('employer_home.html')
+    if request.method == 'POST':
+        employer_id = session['employer_user_id']
+        job_title = request.form['job_title']
+        job_details = request.form['job_description']
+        location = request.form['location']
+        session['add_jobs'] = True
+        starting_date = datetime.strptime(request.form['starting_date'],'%Y-%m-%d')
+        ending_date =  datetime.strptime(request.form['ending_date'],'%Y-%m-%d')
+        experience_requirement = request.form['experience']
+        required_skills = request.form['skills']
+        print(employer_id,job_title,job_details,location,starting_date,ending_date,experience_requirement,required_skills)
+        try:
+            post_job(employer_id,job_title,job_details,location,starting_date,ending_date,experience_requirement,required_skills)
+            commit_all()
+            return employer_home()
+        except:
+            flash('error in job posting')
+            return employer_home()
+    else:
+        return 
     
     
     
-    
-def get_details(emp_id):
-    db.execute('select id , job_title, location from job_posting where employer_id = %s',(emp_id,))
-    output = db.fetchall()    
-    return output
-
-def transform(output):
-    main = []
-    for i in range(len(output)):
-        l = output[i]
-        print(l)
-        l_set ={}
-        
-        l_set['id'] = l[0]
-        l_set['job_title'] = l[1]
-        l_set['location'] = l[2]
-        main.append(l_set)
-    return main
-
-@employer_home_page.route('/your_jobs')
-def your_jobs(output):
-    
-    # output = transform(posted_jobs())
-    # print(output)
-    return render_template('posted_jobs.html',users= output)
-
-def check_session():
-    if 'employer_logged_in' in session and session['employer_logged_in']:
-        return session['employer_user_id']
-        
-
-
-
-@employer_home_page.route('/posted_jobs',methods=['POST'])
-def posted_jobs():
-    # emp_id = request.form['id']
-    emp_id2 = check_session()
-    print(emp_id2)
-    output = get_details(emp_id2)
-    main = transform(output)
-
-        
-    return your_jobs(main)
-
-# @employer_home_page.route('/session')
-# def show_username():
-#     if 'username' in session:
-#         username = session['username']
-#         return render_template('employer_home.html', logged_in=True, user_id=username)
-        
-# show_username()
-
-        
-
-
-# print(session['user_id'])
 
 
 @employer_home_page.route('/logout')

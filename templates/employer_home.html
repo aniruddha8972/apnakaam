@@ -19,7 +19,7 @@
             {% endif %}
         {% endwith %}
         <h1>Job Posting Form</h1>
-        <form action="/emplyer_job_posting" method="POST">
+        <form id ='myForm' action="/emplyer_job_posting" method="POST">
             
 
             <label for="job_title">Job Title:</label>
@@ -47,12 +47,33 @@
         </form>
         
     </div>
+
+
     <div>
         <h2>see your posted jobs</h2>
-       <form action="/posted_jobs" method="POST">
-            <button type="submit">check</button>
-        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>job id</th>
+                    <th>job title</th>
+                    <th>location</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in job_posts %}
+                <tr>
+                    <th>{{job.id}}</th>
+                    <th>{{job.job_title}}</th>
+                    <th>{{job.location}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+
+
     <div>
         <h2>see your job requests</h2>
         <table>
@@ -79,7 +100,7 @@
                         <input type="hidden" name="job_status_id" value="{{ user.job_status_id }}">
                         <input type="radio" name="response" id ='accept' value="accept"> Accept
                         <input type="radio" name="response" id = 'reject' value="reject"> Reject
-                        <button type="submit" id ='submit' >Submit</button>
+                        <button type="submit">Submit</button>
                     </form>
                     </th>
                 </div>
@@ -88,7 +109,130 @@
             </tbody>
         </table>
     </div>
-
 </body>
-<a href="/logout">Logout</a>
+<div>
+    <a class = "bordered-link" href="/logout">Logout</a>
+</div>
+<script>
+    function clearForm() {
+        document.getElementById("myForm").reset();
+    }
+  
+    window.onload = clearForm;
+  </script>
 </html>
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='employer_home.css') }}">
+</head>
+<body>
+  <div class="home-container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+            <li class="{{ category }}" style="animation: fade-in 0.5s ease-in-out;">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h1>Job Posting Form</h1>
+    <form id="myForm" action="/employer_job_posting" method="POST">
+
+      <label for="job_title">Job Title:</label>
+      <input type="text" id="job_title" name="job_title" required><br><br>
+
+      <label for="job_description">Job Description:</label>
+      <textarea id="job_description" name="job_description" required></textarea><br><br>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" required><br><br>
+
+      <label for="starting_date">Starting Date:</label>
+      <input type="date" id="starting_date" name="starting_date"><br><br>
+
+      <label for="ending_date">Ending Date:</label>
+      <input type="date" id="ending_date" name="ending_date"><br><br>
+
+      <label for="experience">Experience Required (optional):</label>
+      <input type="text" id="experience" name="experience"><br><br>
+
+      <label for="skills">Required Skills (optional):</label>
+      <input type="text" id="skills" name="skills"><br><br>
+
+      <button type="submit" id="submit" style="transition: background-color 0.3s ease-in-out;">Submit</button>
+    </form>
+
+    <h2>See Your Posted Jobs</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Job ID</th>
+          <th>Job Title</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for job in job_posts %}
+        <tr style="transition: background-color 0.3s ease-in-out;">
+          <th>{{ job.id }}</th>
+          <th>{{ job.job_title }}</th>
+          <th>{{ job.location }}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>See Your Job Requests</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Job Title</th>
+          <th>Worker Name</th>
+          <th>Skills</th>
+          <th>Experience</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr style="transition: background-color 0.3s ease-in-out;">
+          <th>{{ user.job_title }}</th>
+          <th>{{ user.worker_name }}</th>
+          <th>{{ user.expertise }}</th>
+          <th>{{ user.experience }}</th>
+          <div id="request">
+            <form action="/request_response" method="post">
+              <input type="hidden" name="job_status_id" value="{{ user.job_status_id }}">
+              <input type="radio" name="response" id="accept" value="accept"> Accept
+              <input type="radio" name="response" id="reject" value="reject"> Reject
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+  <div>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <script>
+    function clearForm() {
+      document.getElementById("myForm").reset();
+    }
+
+    window.onload = clearForm;
+  </script>
+</body>
+</html>-->
