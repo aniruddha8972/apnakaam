@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='employer_login.css') }}">
+    <script src="https://kit.fontawesome.com/4361e37ec3.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="login-container">
+        <a href="{{ url_for('front_page') }}">
+            <i class="fa-solid fa-chevron-left fa-shake"></i>
+        </a>
         <h2>Login</h2>
         <form action="/worker_login" method="POST">
             <div class="input-group">
@@ -23,7 +27,7 @@
             {% if messages %}
                 <ul>
                     {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
+                    <i class="fa-solid fa-check-double"></i> {{ message }}
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -32,10 +36,9 @@
         </form>
         <h3>first time here</h3>
         <a href="{{ url_for('worker_login_page.register') }}">
-            join our family
+        <i class="fa-solid fa-plus"></i>
         </a>
     </div>
-
    
 </body>
 </html>
