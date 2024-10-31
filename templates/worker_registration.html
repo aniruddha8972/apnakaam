@@ -3,6 +3,7 @@
 <head>
     <title>New Page Title</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='employer_registration.css') }}">
+    <script src="https://kit.fontawesome.com/4361e37ec3.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class = "registration-container">
@@ -55,7 +56,7 @@
     <div>
         <h3>visited here before</h3>
         <a href="{{ url_for('worker_login_page.login_view') }}">
-            return to login
+            <i class="fa-solid fa-angles-left"></i>
         </a>
     </div>
 </body>
