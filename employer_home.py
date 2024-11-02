@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,jsonify,session
 from flask import Blueprint
-from database import connet,commit_all
+from database2 import connet,commit_all
 from employer_login import employer_home
 from datetime import datetime
 employer_home_page = Blueprint('employer_home_page',__name__)

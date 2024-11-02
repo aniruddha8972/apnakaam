@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from flask import Blueprint
-from database import connet
+from database2 import connet
 from worker_registration import worker_registration_page
 
 

@@ -1,7 +1,7 @@
 # import secrets
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from flask import Blueprint
-from database import connet
+from database2 import connet
 from employer_registration import employer_registration_page
 # from app import get_user
 # from employer_home import home_page
