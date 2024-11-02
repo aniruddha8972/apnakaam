@@ -2,7 +2,7 @@ import secrets
 import re
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import Blueprint
-from database import connet,commit_all
+from database2 import connet,commit_all
 import re
 
 
