@@ -1,4 +1,5 @@
 import secrets
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from employer_login import login_page
 from worker_login import worker_login_page
@@ -30,4 +31,4 @@ def front_page():
     return render_template('first_page.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
