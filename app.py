@@ -5,14 +5,14 @@ from worker_login import worker_login_page
 from employer_home import employer_home_page
 from worker_home import worker_home_page
 # from worker_registration import worker_registration_page
-from flask_session import  Session
+# from flask_session import  Session
 
 app  = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_FILE_DIR'] = '/sessions'  # Optional
+# app.config['SESSION_TYPE'] = 'filesystem'
+# app.config['SESSION_FILE_DIR'] = '/sessions'  # Optional
 
-Session(app)
+# Session(app)
 
 
 
