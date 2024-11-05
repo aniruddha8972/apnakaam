@@ -1,15 +1,13 @@
 import mysql.connector
 
-# Database configuration
-
 mydb = mysql.connector.connect(
     host = 'sql12.freemysqlhosting.net',
     user = 'sql12742243',
     password = '2X1MRTklsE',
     database = 'sql12742243'
 )
-def connet():
-    return mydb.cursor()
+# def connet():
+#     return mydb.cursor()
 
 def commit_all():
     mydb.commit()
@@ -137,13 +135,14 @@ class confirmed_data:
 
 
 
-connet()
+# connet()
 Employer = employer()
 Worker = worker()
 Job_post = job_posting()
 Job_status = job_status()
 Final_data = confirmed_data()
 commit_all()
+# db.close()
 # val = ("John Doe", "123 Main St", "johndoe@example.com", "1234567890", "ABC12345", "johndoe123", "password123")
 # Employer.add_employer_details(val)
 

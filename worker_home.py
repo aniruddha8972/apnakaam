@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,jsonify,session
 from flask import Blueprint
-from database2 import connet,commit_all
+from database2 import db,commit_all
 
 worker_home_page = Blueprint('worker_home_page',__name__)
-db = connet()
+# db = connet()
 
 
 def check_session():
