@@ -1,12 +1,12 @@
 # import secrets
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from flask import Blueprint
-from database2 import connet
+from database2 import db
 from employer_registration import employer_registration_page
 # from app import get_user
 # from employer_home import home_page
 
-mycursor = connet()
+# mycursor = connet()
 # user_details = None
 
 login_page = Blueprint('login_page',__name__)
@@ -16,8 +16,8 @@ login_page.register_blueprint(employer_registration_page)
 
 def get_requests():
     employer_id = session['employer_user_id']
-    mycursor.execute('select job_posting.job_title,worker.name,worker.experience,worker.expertise_field,job_status.job_status_id from worker inner join job_status on worker.user_id = job_status.worker_id inner join job_posting on job_posting.id = job_status.job_posting_id where job_posting.employer_id = %s and job_status.job_status = %s',(employer_id,'accept',))
-    job_requests = mycursor.fetchall()
+    db.execute('select job_posting.job_title,worker.name,worker.experience,worker.expertise_field,job_status.job_status_id from worker inner join job_status on worker.user_id = job_status.worker_id inner join job_posting on job_posting.id = job_status.job_posting_id where job_posting.employer_id = %s and job_status.job_status = %s',(employer_id,'accept',))
+    job_requests = db.fetchall()
     print(job_requests)
     return job_requests
 
@@ -42,8 +42,8 @@ def request_transform(job_requests):
 
 
 def get_details(emp_id):
-    mycursor.execute('select id , job_title, location from job_posting where employer_id = %s',(emp_id,))
-    output = mycursor.fetchall()    
+    db.execute('select id , job_title, location from job_posting where employer_id = %s',(emp_id,))
+    output = db.fetchall()    
     return output
 
 def transform(output):
@@ -111,10 +111,10 @@ def login():
     username = request.form['username']
     password = request.form['password']
     #conneting with database
-    mycursor.execute('select password from employer where  user_id = %s',(username,))
+    db.execute('select password from employer where  user_id = %s',(username,))
     # print(password)
     # print(username)
-    pas= mycursor.fetchone()
+    pas= db.fetchone()
     # print(pas)
     if pas == None:
         flash('incorrect user_id or password', 'warning')
