@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,jsonify,session
 from flask import Blueprint
-from database2 import connet,commit_all
+from database2 import commit_all,db
 from employer_login import employer_home
 from datetime import datetime
 employer_home_page = Blueprint('employer_home_page',__name__)
@@ -9,7 +9,7 @@ employer_home_page = Blueprint('employer_home_page',__name__)
 
 
 
-db = connet()
+# db = connet()
 
 
 
@@ -90,7 +90,7 @@ def employer_response_form():
         commit_all()
         return "worker_selected"
     
-        
+
         
         
         
